@@ -1,4 +1,5 @@
 [![package publisher](https://img.shields.io/pub/publisher/git_helper.svg)](https://pub.dev/packages/git_helper/publisher)
+[![codecov](https://codecov.io/gh/Matteuus/git_helper/branch/main/graph/badge.svg?token=ABVZICGHR0)](https://codecov.io/gh/Matteuus/git_helper)
 
 A simple command line interdace to help you out with some github commands
 
