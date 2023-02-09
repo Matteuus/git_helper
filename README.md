@@ -1,4 +1,6 @@
-A simple github helper
+[![package publisher](https://img.shields.io/pub/publisher/git_helper.svg)](https://pub.dev/packages/git_helper/publisher)
+
+A simple command line interdace to help you out with some github commands
 
 ## Install
 
