@@ -25,6 +25,13 @@ Future<bool> createGit() async {
   return checkProcessCode(await process.exitCode);
 }
 
+Future<bool> createBranch() async {
+  final process = await Process.start("git", ['checkout', '-b', 'main']);
+  await stdout.addStream(process.stdout);
+  await stderr.addStream(process.stderr);
+  return checkProcessCode(await process.exitCode);
+}
+
 Future<bool> stagedCommit() async {
   final process = await Process.start("git", ['add', "."]);
   await stdout.addStream(process.stdout);

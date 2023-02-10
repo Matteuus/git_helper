@@ -10,19 +10,24 @@ enum ChoiceOptions {
 }
 
 enum CommitType {
-  feat("feature"),
-  hotfix("hotfix"),
-  bugfix("bugfix"),
-  none("none"),
-  chore("chore"),
-  refactor("refactor"),
-  doc("doc"),
-  style("style"),
-  test("test");
+  feat("featute", "A new feature"),
+  hotfix("hotfix", "A bug fix"),
+  bugfix("bugfix", "A bug fix"),
+  none("none", "No commit type"),
+  chore("chore", "Other changes that don't modify src or test files"),
+  refactor(
+      "refactor", "A code change that neither fixes a bug nor adds a feature"),
+  doc("doc", "Documentation only changes"),
+  style("style",
+      "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"),
+  test("test", "Adding missing tests or correcting existing tests"),
+  ci("CI",
+      "Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)");
 
   final String name;
+  final String description;
 
-  const CommitType(this.name);
+  const CommitType(this.name, this.description);
 }
 
 // iterate with selection

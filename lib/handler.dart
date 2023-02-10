@@ -31,13 +31,17 @@ class CommitStep extends GitStep {
   Future<bool> execute() async {
     String commitMessage = "";
     final commitType = getCommitType();
-    commitMessage += commitType.name;
+    commitType.name != "none" ? commitMessage += commitType.name : "";
     final task = Input(
             prompt:
                 "There is a task to vinculate? [PRO-1]: (if you leave blank this field will be ignored) ")
         .interact()
         .trim();
-    task.isNotEmpty ? commitMessage += "[$task]: " : commitMessage += ": ";
+    task.isNotEmpty
+        ? commitMessage += "[$task]: "
+        : commitMessage.isEmpty
+            ? commitMessage = ""
+            : commitMessage += ": ";
     final message =
         Input(prompt: "Commit message: ", validator: (value) => value.isEmpty)
             .interact()

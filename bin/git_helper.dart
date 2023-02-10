@@ -4,7 +4,6 @@ import 'package:git_helper/datasource.dart';
 import 'package:git_helper/handler.dart';
 import 'package:git_helper/src/options.dart';
 
-const String program = 'gh';
 void main(List<String> arguments) async {
   Options options;
   try {
@@ -59,6 +58,8 @@ Future<void> newGitCommitFlow() async {
     PushRemoteStep(),
     PullRemoteStep(),
   ];
+
+  //verificar caso se for a execucao do repositorio git quando perguntar se deseja linkar caso a resposta seja nao nao desfazer o processo ja feito
 
   for (final step in steps) {
     final result = await step.execute();
