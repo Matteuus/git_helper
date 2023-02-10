@@ -33,7 +33,7 @@ class CreateBranchAndMoveStep extends GitStep {
   @override
   Future<bool> execute() async {
     final optionSelected = getChoiceOption(
-        "There is not an initialized git repository in this workspace, do you want to create it?");
+        "Do you want to create a branch to put your modifications on it?");
     if (optionSelected == ChoiceOptions.yes) {
       String branchName = "";
       final commitType = getCommitType(

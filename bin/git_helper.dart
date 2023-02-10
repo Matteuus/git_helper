@@ -13,7 +13,7 @@ void main(List<String> arguments) async {
     options = parseOptions(arguments);
   } on FormatException catch (e) {
     stderr.writeln(e.message);
-    print(usage);
+    //print(usage);
     exitCode = 64;
     return;
   }
