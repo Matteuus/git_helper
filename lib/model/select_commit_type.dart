@@ -1,11 +1,11 @@
 import 'package:git_helper/constants.dart';
 
 class SelectedCommitType {
-  static CommitType _selectedCommitType = CommitType.none;
+  CommitType _commitType = CommitType.none;
 
-  static CommitType get selectedCommitType => _selectedCommitType;
-
-  static set selectedCommitType(CommitType value) {
-    _selectedCommitType = value;
+  set commitType(CommitType value) {
+    _commitType = value;
   }
+
+  CommitType get commitType => _commitType;
 }

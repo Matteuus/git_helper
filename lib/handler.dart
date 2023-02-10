@@ -1,8 +1,11 @@
 import 'package:git_helper/constants.dart';
 import 'package:git_helper/datasource.dart';
+import 'package:git_helper/model/select_commit_type.dart';
+import 'package:git_helper/service_locator.dart';
 import 'package:interact/interact.dart';
 
 abstract class GitStep {
+  final selectedCommitType = getIt.get<SelectedCommitType>();
   Future<bool> execute();
 }
 
@@ -22,6 +25,7 @@ class CreateGitRepositoryStep extends GitStep {
 class StageFilesStep extends GitStep {
   @override
   Future<bool> execute() async {
+    print(selectedCommitType.commitType);
     return await stagedCommit();
   }
 }
@@ -83,6 +87,8 @@ class PushRemoteStep extends GitStep {
 class PullRemoteStep extends GitStep {
   @override
   Future<bool> execute() async {
+    selectedCommitType.commitType = CommitType.ci;
+    print(selectedCommitType.commitType);
     return await pullRemote();
   }
 }
