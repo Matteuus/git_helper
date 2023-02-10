@@ -33,7 +33,7 @@ class CreateBranchAndMoveStep extends GitStep {
   @override
   Future<bool> execute() async {
     final optionSelected = getChoiceOption(
-        "There is not an initialized git repository in this workspace, do you want to create it?");
+        "Do you want to create a branch to put your modifications on it?");
     if (optionSelected == ChoiceOptions.yes) {
       String branchName = "";
       final commitType = getCommitType(
@@ -65,14 +65,14 @@ class CommitStep extends GitStep {
   @override
   Future<bool> execute() async {
     String commitMessage = "";
-    final commitType =
-        getCommitType(message: "Select the commit type (none will ignore it)");
+    final commitType = getCommitType(
+        message: "Select the commit message type (none will ignore it)");
     commitType.name != CommitType.none.name
         ? commitMessage += commitType.name
         : "";
     final task = Input(
             prompt:
-                "There is a task to vinculate? [PRO-1]: (if you leave blank this field will be ignored) ")
+                "There is a task to vinculate? [ABC-123]: (if you leave blank this field will be ignored) ")
         .interact()
         .trim();
     task.isNotEmpty
