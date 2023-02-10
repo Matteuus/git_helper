@@ -56,7 +56,6 @@ class CreateBranchAndMoveStep extends GitStep {
 class StageFilesStep extends GitStep {
   @override
   Future<bool> execute() async {
-    print(selectedCommitType.commitType);
     return await stagedCommit();
   }
 }
@@ -121,8 +120,6 @@ class PushRemoteStep extends GitStep {
 class PullRemoteStep extends GitStep {
   @override
   Future<bool> execute() async {
-    selectedCommitType.commitType = CommitType.ci;
-    print(selectedCommitType.commitType);
     return await pullRemote();
   }
 }

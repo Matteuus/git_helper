@@ -63,7 +63,7 @@ Future<void> newGitCommitFlow() async {
     PullRemoteStep(),
   ];
 
-  //verificar caso se for a execucao do repositorio git quando perguntar se deseja linkar caso a resposta seja nao nao desfazer o processo ja feito
+  //!verificar caso se for a execucao do repositorio git quando perguntar se deseja linkar caso a resposta seja nao nao desfazer o processo ja feito, prompt perguntando sobre linkar com novo repo remoto parace nao existir mais
 
   for (final step in steps) {
     final result = await step.execute();
