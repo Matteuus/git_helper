@@ -40,9 +40,9 @@ ChoiceOptions getChoiceOption(String message) {
   return ChoiceOptions.values[selection];
 }
 
-CommitType getCommitType() {
+CommitType getCommitType({required String message}) {
   final selection = Select(
-          prompt: "Select the commit type (none will ignore it)",
+          prompt: message,
           options: CommitType.values.map((type) => type.name).toList())
       .interact();
   return CommitType.values[selection];

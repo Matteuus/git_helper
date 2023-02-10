@@ -9,6 +9,13 @@ abstract class GitStep {
   Future<bool> execute();
 }
 
+class IsGitDirectoryStep extends GitStep {
+  @override
+  Future<bool> execute() {
+    return isGitDirectory();
+  }
+}
+
 class CreateGitRepositoryStep extends GitStep {
   @override
   Future<bool> execute() async {
@@ -18,6 +25,30 @@ class CreateGitRepositoryStep extends GitStep {
       return await createGit();
     } else {
       return false;
+    }
+  }
+}
+
+class CreateBranchAndMoveStep extends GitStep {
+  @override
+  Future<bool> execute() async {
+    final optionSelected = getChoiceOption(
+        "There is not an initialized git repository in this workspace, do you want to create it?");
+    if (optionSelected == ChoiceOptions.yes) {
+      String branchName = "";
+      final commitType = getCommitType(
+          message: "Select the branch type (none will ignore it)");
+      commitType.name != CommitType.none.name
+          ? branchName = "${commitType.name}/"
+          : "";
+      final branch =
+          Input(prompt: "Branch name: ", validator: (value) => value.isEmpty)
+              .interact()
+              .trim();
+      branchName += branch;
+      return await createBranchAndMove(branchName: branchName);
+    } else {
+      return true;
     }
   }
 }
@@ -34,8 +65,11 @@ class CommitStep extends GitStep {
   @override
   Future<bool> execute() async {
     String commitMessage = "";
-    final commitType = getCommitType();
-    commitType.name != "none" ? commitMessage += commitType.name : "";
+    final commitType =
+        getCommitType(message: "Select the commit type (none will ignore it)");
+    commitType.name != CommitType.none.name
+        ? commitMessage += commitType.name
+        : "";
     final task = Input(
             prompt:
                 "There is a task to vinculate? [PRO-1]: (if you leave blank this field will be ignored) ")

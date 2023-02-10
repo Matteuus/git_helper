@@ -1,9 +1,8 @@
 import 'dart:io';
 
-import 'package:git_helper/constants.dart';
 import 'package:git_helper/datasource.dart';
 import 'package:git_helper/handler.dart';
-import 'package:git_helper/model/select_commit_type.dart';
+
 import 'package:git_helper/service_locator.dart';
 import 'package:git_helper/src/options.dart';
 
@@ -35,10 +34,8 @@ void main(List<String> arguments) async {
 }
 
 Future<void> commitFlow() async {
-  SelectedCommitType s = SelectedCommitType();
-  s.commitType = CommitType.none;
-
   final List<GitStep> steps = [
+    CreateBranchAndMoveStep(),
     StageFilesStep(),
     CommitStep(),
     PushRemoteStep(),
